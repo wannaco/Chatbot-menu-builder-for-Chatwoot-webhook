@@ -1,10 +1,10 @@
-# Chatwoot Form Data Forwarder
+#  Chatbot Menu Builder for Chatwoot Form Data Forwarder
 
-This repository contains a Google Apps Script project designed to receive webhook data from Chatwoot forms and store it in a Google Sheet. This is a companion project to our YouTube video demonstrating how to integrate Chatwoot forms with your CRM or data storage.
+This repository contains a Google Apps Script project designed to receive webhook data from Chatbot Menu Builder for Chatwoot forms and store it in a Google Sheet. This is a companion project to our YouTube video demonstrating how to integrate Chatbot Menu builder for chatwoot https://chabot.thinkcloud.dev  forms with your CRM or data storage.
 
 ## Features
 
-*   **Webhook Receiver:** Listens for `POST` requests sent by Chatwoot when a form is submitted.
+*   **Webhook Receiver:** Listens for `POST` requests sent by the Chatbot menu builder when a form is submitted.
 *   **Authentication:** Uses a static token for basic security to ensure only authorized requests are processed.
 *   **Google Sheet Integration:** Appends submitted form data to a specified Google Sheet.
 *   **Data Structuring:** Organizes form data into a structured format within the Google Sheet, including conversation ID for easy reference.
@@ -12,7 +12,8 @@ This repository contains a Google Apps Script project designed to receive webhoo
 
 ## Prerequisites
 
-*   **Chatwoot Account:** With form functionality enabled.
+*   **Chatwoot Account:** with a bot configured
+*   **Chatbot Menu builder:** Ibox setup completed and responses created. 
 *   **Google Account:** To create and manage Google Sheets and Google Apps Script.
 
 ## Setup
@@ -57,29 +58,18 @@ Your script needs two properties set: `SHEET_ID` and `STATIC_TOKEN`.
 7.  You may be prompted to authorize the script. Follow the on-screen prompts to grant the necessary permissions.
 8.  After successful deployment, you will see a **Web app URL**. Copy this URL – this is the webhook URL you'll configure in Chatwoot.
 
-## Configuration in Chatwoot
+## Configuration in Chatbot Menu Builder for Chatwoot
 
-1.  Navigate to your Chatwoot dashboard.
-2.  Go to **Settings** > **Integrations**.
-3.  Find the **Webhooks** section and click **Add webhook**.
-4.  **URL:** Paste the Web app URL you copied from Google Apps Script deployment.
-5.  **Events:** Select `Form submitted`.
-6.  **Token:** Enter the **`STATIC_TOKEN`** you configured in your Google Apps Script properties.
-7.  Click **Save**.
+1. Navigate to your Chatbot meny builder Dashboard
+2. Go to All Inboxes
+3. Click the edit button for the corresponding whatsapp/facebook/telegram Inbox
+4. Go to CRM forwarding and paste the Appscript webapp url
+5. <img width="842" height="793" alt="image" src="https://github.com/user-attachments/assets/93edf2a6-36b2-4dcf-a54a-e40afae4f70c" />
 
-## How it Works
-
-*   The `doPost(e)` function is the entry point for the Web App.
-*   It first checks for the `STATIC_TOKEN` sent in the request parameters against the one stored in the script properties.
-*   If the token is valid, it parses the JSON payload from the `e.postData.contents`.
-*   It retrieves the `SHEET_ID` and then opens the specified Google Sheet.
-*   It either finds an existing sheet named "Leads" or creates a new one with the correct headers.
-*   It appends a new row to the "Leads" sheet with the extracted data, including a unique ID, timestamp, and the `submitted_values` stringified as JSON.
-*   The `conversation_id` is also included, allowing you to easily cross-reference the submitted data with the original Chatwoot conversation.
 
 ## Usage
 
-Once configured, any form submissions in Chatwoot will automatically trigger the webhook. The data will then appear as a new row in your designated Google Sheet.
+Once configured, any form submissions in the configured Chatbot for Chatwoot will automatically trigger the webhook. The data will then appear as a new row in your designated Google Sheet.
 
 ## Contributing
 
